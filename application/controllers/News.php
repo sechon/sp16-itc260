@@ -14,6 +14,7 @@ class News extends CI_Controller {
         public function index()
         {
                 $data['news'] = $this->news_model->get_news();
+                $data['page_id'] = 'news';    
                 $data['title'] = 'News archive';
 
                 $this->load->view('templates/header', $data);
@@ -24,6 +25,7 @@ class News extends CI_Controller {
         public function view($slug = NULL)
         {
                 $data['news_item'] = $this->news_model->get_news($slug);
+                $data['page_id'] = 'news';    
 
                 if (empty($data['news_item']))
                 {
