@@ -17,7 +17,7 @@ original from: http://lifesforlearning.com/connecting-to-the-flickr-api-with-php
 */
 
 $api_key = 'e3c827848ba7a996e22e30a51250e8bc';
-$tags = 'camping,hiking';
+$tags = 'puppies,kittens';
 
 $perPage = 25;
 $url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search';
