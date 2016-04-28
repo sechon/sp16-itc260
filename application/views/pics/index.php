@@ -8,13 +8,15 @@ $this->load->view($this->config->item('theme').'header');
 
 <h2><?php echo $title; ?></h2>
 
+<?php echo $pics; ?>
+
 <?php
 /*
 flickr-api-test.php
 
 original from: http://lifesforlearning.com/connecting-to-the-flickr-api-with-php/
 
-*/
+
 
 $api_key = 'e3c827848ba7a996e22e30a51250e8bc';
 $tags = 'puppies,kittens';
@@ -29,14 +31,18 @@ $url.= '&nojsoncallback=1';
  
 $response = json_decode(file_get_contents($url));
 $pics = $response->photos->photo;
- 
+
+*/
+
 /*
 echo "<pre>";
 echo var_dump($response);
 echo "</pre>";
 die;
 */
- 
+
+/*
+
 foreach($pics as $pic){
 
     $size = 'q';
@@ -51,6 +57,8 @@ foreach($pics as $pic){
 }
 
 //endforeach; 
+
+*/
 
 ?>
 
