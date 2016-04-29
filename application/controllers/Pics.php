@@ -23,5 +23,24 @@ class Pics extends CI_Controller {
                 //$this->load->view('templates/footer');
         }
     
-}
+        public function view($tags = NULL)
+            {
+                $data['title'] = 'Flickr archive';  
+                
+                $data['pics'] = $this->pics_model->get_pics($tags);
+                    $data['page_id'] = 'pics'; 
+                    //$data['title'] = 'Flickr archive';
+
+                    //if (empty($data['pics']))
+                    //{
+                    //        show_404();
+                    //}
+
+                    //$data['title'] = $data['get_tag']['title'];
+
+                    //$this->load->view('templates/header', $data);
+                    $this->load->view('pics/view', $data);
+                    //$this->load->view('templates/footer');
+            }
+    }
 
