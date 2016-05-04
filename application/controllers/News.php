@@ -9,6 +9,8 @@ class News extends CI_Controller {
                 parent::__construct();
                 $this->load->model('news_model');
                 $this->load->helper('url_helper');
+                //global banner for all methods
+                $this->config->set_item('banner','Global News Banner');
         }
 
         public function index()
@@ -17,9 +19,7 @@ class News extends CI_Controller {
                 $data['page_id'] = 'News';    
                 $data['title'] = 'News archive';
 
-                //$this->load->view('templates/header', $data);
                 $this->load->view('news/index', $data);
-                //$this->load->view('templates/footer');
         }
 
         public function view($slug = NULL)
@@ -33,9 +33,36 @@ class News extends CI_Controller {
                 }
 
                 $data['title'] = $data['news_item']['title'];
-
-                //$this->load->view('templates/header', $data);
                 $this->load->view('news/view', $data);
-                //$this->load->view('templates/footer');
+        }
+    
+        public function create()
+        {
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+
+            $data['title'] = 'Create a news item';
+
+            $this->form_validation->set_rules('title', 'Title', 'required');
+            $this->form_validation->set_rules('text', 'Text', 'required');
+
+            if ($this->form_validation->run() === FALSE)
+            {
+                $this->load->view('news/create');
+            }
+            else
+            {
+                $slug= $this->news_model->set_news();
+                if($slug) 
+                {//date present, load view
+                    feedback('News item successfully created','notice');
+                    redirect('/news/view/' . $slug);
+                    
+                }else{//we have an issue
+                    feedback('News item NOT created','warning');
+                    redirect('/news/create');
+                    
+                }
+            }
         }
 }
